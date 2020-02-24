@@ -31,6 +31,7 @@ def path_cleanup(path: str) -> str:
             path = path_with_slash
     return path  
 
+
 def main(link: Optional[List[str]] = None, path: str = ""):
     if not link:
         print("What link do you want to download?")
