@@ -44,3 +44,6 @@ def main_mit_gui():
     links: List[str] = get_links_window()
     path: str = get_folder_input_window()
     main(links, path)
+
+if __name__ == "__main__":
+    main_mit_gui()
