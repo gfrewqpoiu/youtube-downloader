@@ -1,5 +1,6 @@
 import youtube_dl
 from loguru import logger
+from typing import List, Optional
 
 
 class MyLogger(object):
@@ -22,17 +23,19 @@ ydl_opts = {'format': 'best[ext=mp4][height<=720]',
             'logger': MyLogger()}
 
 
-def main():
-    print("What link do you want to download?")
-    link = input("Please enter it here: ")  # Dies liest den Link von der Konsole ein.
+def main(link: Optional[List[str]] = None, path: str = ""):
+    if not link:
+        print("What link do you want to download?")
+        link = [input("Please enter it here: ")]  # Dies liest den Link von der Konsole ein.
     print(f"The Link you provided is: {link}")
-    print("Okay. Where should I place the file?")
-    path = input(
-        "Please enter the Path here (and add a / or \\ at the end if there is none): ")  # Dies liest den Pfad von der Konsole ein.
+    if not path:
+        print("Okay. Where should I place the file?")
+        path = input(
+            "Please enter the Path here (and add a / or \\ at the end if there is none): ")  # Dies liest den Pfad von der Konsole ein.
     print(f"The path you provided is: {path}")
     ydl_opts.update({'outtmpl': f'{path}%(title)s.%(ext)s'})
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download([link])
+        ydl.download(link)
 
 
 if __name__ == '__main__':
