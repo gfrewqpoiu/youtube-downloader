@@ -6,7 +6,7 @@ from typing import List
 
 def get_links_window() -> List[str]:
     layout = [[Sg.Text("Please enter the URL(s) you want to download. One per line.")],
-              [Sg.Multiline(tooltip="Enter one URL per line.", key="INPUT", size=(40, 12))],
+              [Sg.Multiline(tooltip="Enter one URL per line.", key="INPUT", size=(100, 12))],
               [Sg.Cancel(), Sg.Ok()]]
     window = Sg.Window("Youtube-dl Downloader", layout)
     event, values = window.Read()
@@ -37,11 +37,34 @@ def get_folder_input_window(title_text: str = "Youtube-dl Downloader", initial_f
         return path
 
 
+def video_or_audio() -> str:
+    layout = [[Sg.Button("Download Videos", key="VIDEO")],
+              [Sg.Button("Download Audios", key="AUDIO")],
+              [Sg.Cancel()]]
+    window = Sg.Window("Youtube-dl Downloader", layout=layout)
+    event, values = window.Read()
+    window.Close()
+    if event == "Cancel":
+        exit(0)
+    else:
+        return event
+
+
 def main_mit_gui():
+    file_type: str = video_or_audio()
     links: List[str] = get_links_window()
     path: str = get_folder_input_window()
-    main(links, path)
+    if file_type == "VIDEO":
+        main(links, path)
+    elif file_type == "AUDIO":
+        options = {'format': 'bestaudio[ext=m4a]/bestaudio/best'}
+        main(links, path, ydl_options=options)
+    else:
+        raise NotImplementedError("Unsupported file type.")
 
 
 if __name__ == "__main__":
+    from loguru import logger
+    logger.remove()
+    logger.add(lambda msg: Sg.EasyPrint(msg), level='DEBUG', colorize=False, backtrace=True, diagnose=True)
     main_mit_gui()

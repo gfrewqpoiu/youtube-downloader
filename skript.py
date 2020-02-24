@@ -1,27 +1,30 @@
 import youtube_dl
 from loguru import logger
-from typing import List, Optional
+from typing import List, Optional, Dict, Any
 from pathlib import Path
 
 
 class MyLogger(object):
     """Dies leitet die Ausgabe von Youtube-dl zu loguru um."""
-    def debug(self, msg):
+    def debug(self, msg: str) -> None:
         logger.debug(msg)
 
-    def warning(self, msg):
+    def warning(self, msg: str) -> None:
         logger.warning(msg)
 
-    def error(self, msg):
-        logger.error(msg)
-
-    def info(self, msg):
+    def info(self, msg: str) -> None:
         logger.info(msg)
 
+    def error(self, msg: str) -> None:
+        """
 
-ydl_opts = {'format': 'best[ext=mp4][height<=720]',
-            # Das bedeutet, lade das beste mp4 Video runter, was maximal 720p ist.
-            'logger': MyLogger()}
+        :param msg: The message to log.
+        """
+        logger.error(msg)
+
+
+ydl_opts: Dict[str, Any] = {'format': 'best[ext=mp4][height<=720]'}
+# Das bedeutet, lade das beste mp4 Video runter, was maximal 720p ist.
 
 
 def path_cleanup(path: str) -> str:
@@ -32,20 +35,22 @@ def path_cleanup(path: str) -> str:
     return path  
 
 
-def main(link: Optional[List[str]] = None, path: str = ""):
-    if not link:
+def main(links: Optional[List[str]] = None, path: str = "", ydl_options: Optional[Dict[str, Any]] = None):
+    if ydl_options is None:
+        ydl_options = ydl_opts
+    ydl_options.update({'logger': MyLogger()})
+    if not links:
         print("What link do you want to download?")
-        link = [input("Please enter it here: ")]  # Dies liest den Link von der Konsole ein.
-    print(f"The Link you provided is: {link}")
+        links = [input("Please enter it here: ")]  # Dies liest den Link von der Konsole ein.
+    logger.debug(f"The Links you provided are: {links}")
     if not path:
         print("Okay. Where should I place the file?")
-        path = input(
-            "Please enter the Path here: ")
-        path = path_cleanup(path)  # Dies liest den Pfad von der Konsole ein.
-    print(f"The path you provided is: {path}")
-    ydl_opts.update({'outtmpl': f'{path}%(title)s.%(ext)s'})
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        ydl.download(link)
+        path = input("Please enter the Path here: ")  # Dies liest den Pfad von der Konsole ein.
+        path = path_cleanup(path)
+    logger.debug(f"The path you provided is: {path}")
+    ydl_options.update({'outtmpl': f'{path}%(title)s.%(ext)s'})
+    with youtube_dl.YoutubeDL(ydl_options) as ydl:
+        ydl.download(links)
 
 
 if __name__ == '__main__':
