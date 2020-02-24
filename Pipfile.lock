@@ -1,0 +1,37 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "db72345aa94161dc7fafd509462ead4cb177b2253c513e4485a87b776d0c7127"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "loguru": {
+            "hashes": [
+                "sha256:074b3caa6748452c1e4f2b302093c94b65d5a4c5a4d7743636b4121e06437b0e",
+                "sha256:a6101fd435ac89ba5205a105a26a6ede9e4ddbb4408a6e167852efca47806d11"
+            ],
+            "index": "pypi",
+            "version": "==0.4.1"
+        },
+        "youtube-dl": {
+            "hashes": [
+                "sha256:3ba5a9258a33b537392f3dfd3f8868631c63a437d17524555922020ba19c4102",
+                "sha256:b98d240c928a1bd0412b270ccf0d776aae5448672ea374e0af45f6daa3984009"
+            ],
+            "index": "pypi",
+            "version": "==2020.2.16"
+        }
+    },
+    "develop": {}
+}
