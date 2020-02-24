@@ -1,4 +1,4 @@
-from skript import *
+from skript import main, path_cleanup
 from pathlib import Path
 import PySimpleGUI as Sg
 from typing import List
@@ -32,10 +32,7 @@ def get_folder_input_window(title_text: str = "Youtube-dl Downloader", initial_f
         exit(0)
     elif event.upper() == "OK":
         path: str = values["PATH"]
-        if not path.endswith("/") or path.endswith("\\"):
-            path = Path(path).as_posix() # Macht den Pfad immer zu einem POSIX Pfad. Also mit / für Ebenen.
-            path_with_slash = str(path) + "/"  # Fügt den fehlenden Slash hinzu.
-            path = path_with_slash  
+        path = path_cleanup(path)
 
         return path
 
