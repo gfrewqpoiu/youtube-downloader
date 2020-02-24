@@ -35,7 +35,7 @@ def get_folder_input_window(title_text: str = "Youtube-dl Downloader", initial_f
         if not path.endswith("/") or path.endswith("\\"):
             path = Path(path).as_posix() # Macht den Pfad immer zu einem POSIX Pfad. Also mit / für Ebenen.
             path_with_slash = str(path) + "/"  # Fügt den fehlenden Slash hinzu.
-            path = path_with_slash  # TODO: Test on Windows whether youtube-dl accepts POSIX Path.
+            path = path_with_slash  
 
         return path
 
