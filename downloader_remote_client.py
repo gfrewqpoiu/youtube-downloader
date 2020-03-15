@@ -20,7 +20,20 @@ async def main(urls: List[str], path: Union[str, os.PathLike]):
     async with await anyio.connect_tcp('localhost', 9123, ssl_context=client_context, autostart_tls=True) as client:
         await client.send_all(b'%s\n' % PASSWORD)
         response = await client.receive_until(b'\n', 1024)
-        logger.debug(response)
+        logger.debug(str(response, encoding='utf-8'))
+        await client.send_all(bytes(path + '\n', encoding='utf-8'))
+        response = await client.receive_until(b'\n', 1024)
+        logger.debug(str(response, encoding='utf-8'))
+        all_urls = ';'.join(urls) + '\n'
+        await client.send_all(bytes(all_urls, encoding='utf-8'))
+        async for msg in client.receive_chunks(8192):
+            logger.debug(f"Message from Server: {str(msg, encoding='utf-8')}")
 
 if __name__ == '__main__':
-    anyio.run(main, backend='trio')
+    print("What link do you want to download?")
+    urls = [input("Please enter it here: ")]
+    print("Okay. Where should I place the file on the Remote Server?")
+    path = input("Please enter the Path here: ")
+    import skript
+    path = skript.path_cleanup(path)
+    anyio.run(main, urls, path, backend='trio')
