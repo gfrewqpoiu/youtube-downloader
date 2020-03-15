@@ -8,3 +8,6 @@ __pycache__/
 /skript_mit_GUI.spec
 
 .DS_Store
+
+.idea/dictionaries/
+*.pem
