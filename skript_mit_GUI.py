@@ -55,12 +55,12 @@ def main_mit_gui():
     links: List[str] = get_links_window()
     path: str = get_folder_input_window()
     if file_type == "VIDEO":
-        main(links, path)
+        options = None
     elif file_type == "AUDIO":
         options = {'format': 'bestaudio[ext=m4a]/bestaudio/best'}
-        main(links, path, ydl_options=options)
     else:
         raise NotImplementedError("Unsupported file type.")
+    main(links, path, ydl_options=options)
 
 
 if __name__ == "__main__":

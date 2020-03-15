@@ -28,6 +28,7 @@ ydl_opts: Dict[str, Any] = {'format': 'best[ext=mp4][height<=720]'}
 
 
 def path_cleanup(path: str) -> str:
+    """Simply adds a / to the given path and converts it to POSIX."""
     if not path.endswith("/") or path.endswith("\\"):
             path = Path(path).as_posix() # Macht den Pfad immer zu einem POSIX Pfad. Also mit / für Ebenen.
             path_with_slash = str(path) + "/"  # Fügt den fehlenden Slash hinzu.
@@ -35,7 +36,13 @@ def path_cleanup(path: str) -> str:
     return path  
 
 
-def main(links: Optional[List[str]] = None, path: str = "", ydl_options: Optional[Dict[str, Any]] = None):
+def main(links: Optional[List[str]] = None, path: str = "", ydl_options: Optional[Dict[str, Any]] = None) -> None:
+    """
+    Downloads the given links to the given path using youtube-dl.
+    :param links: A list of Links to download. If None, it will ask from the console.
+    :param path: The path to Download to, if Empty String then it will ask from the console.
+    :param ydl_options: A Dictionary of Youtube-dl options. See:
+    """
     if ydl_options is None:
         ydl_options = ydl_opts
     ydl_options.update({'logger': MyLogger()})

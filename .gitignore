@@ -3,3 +3,8 @@
 .vscode/settings.json
 
 __pycache__/
+/build/
+/skript.spec
+/skript_mit_GUI.spec
+
+.DS_Store
