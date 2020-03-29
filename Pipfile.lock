@@ -21,11 +21,11 @@
                 "trio"
             ],
             "hashes": [
-                "sha256:2b758634cf1adc3589937d91f6736b3696d091c1485a10c9cc3f1bd5e6d96813",
-                "sha256:78db97333af17381cadd2cc0dbd3d4e0258e4932368eab8895cb65a269db054e"
+                "sha256:7deae0315dd10aa41c21528b83352e4b52f44e6153a21081a3d1cd8c03728e46",
+                "sha256:db2c3d21576870b95d4fd0b8f4a0f9c64057f777c578f3a8127179a17c8c067e"
             ],
             "index": "pypi",
-            "version": "==1.2.3"
+            "version": "==1.3.0"
         },
         "async-generator": {
             "hashes": [
@@ -131,11 +131,11 @@
         },
         "pysimplegui": {
             "hashes": [
-                "sha256:b20460293069a39ac70091ee3eb69b484f49aadee4190d2608e8eedb9ca90e24",
-                "sha256:e3c34694d28001d8cf7954066496809d8f892f542386fc9f83ddf5f57a7d8664"
+                "sha256:5d627396ca77c9146d21ad44b439c23e675b212eee1cfe56f3dde66c5215604d",
+                "sha256:65a65a2bdcd947d343b4ef46c9704b920f8ff6f5bbe981475bb8dab26310d4cf"
             ],
             "index": "pypi",
-            "version": "==4.16.0"
+            "version": "==4.18.0"
         },
         "six": {
             "hashes": [
@@ -175,11 +175,11 @@
         },
         "youtube-dl": {
             "hashes": [
-                "sha256:1b098b7ae41551f46dbae70e56dbabdf39c8faf50e072d0c0b42c44d64afebf8",
-                "sha256:f9d33129ea4941bea234cdba811c0f97e61c2235a877cf395a869aeea065e009"
+                "sha256:4b03efe439f7cae26eba909821d1df00a9a4eb82741cb2e8b78fe29702bd4633",
+                "sha256:c0be39ea9bca72fa02a0d2d043c5e9bd8ea8e0fe79705e891161d6fcd29da59e"
             ],
             "index": "pypi",
-            "version": "==2020.3.8"
+            "version": "==2020.3.24"
         }
     },
     "develop": {
