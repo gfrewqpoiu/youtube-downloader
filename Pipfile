@@ -5,6 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 pyinstaller = "*"
+ipython = "*"
+mypy = "*"
 
 [packages]
 youtube-dl = "*"
